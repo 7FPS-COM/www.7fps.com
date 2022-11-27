@@ -1,0 +1,14 @@
+.App {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    flex-direction: column;
+
+    color: var(--main-text-color);
+    caret-color: var(--main-text-color);
+}
+
+textarea {
+    color: var(--main-text-color);
+    caret-color: var(--main-text-color);
+}

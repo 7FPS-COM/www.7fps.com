@@ -1,0 +1,246 @@
+.notepad_list {
+    max-width: 75%;
+    min-width: 250px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 400px;
+    border-right: 1px solid var(--border-color);
+    .notepad_list__head {
+        display: flex;
+        align-items: center;
+        padding: 0 8px;
+        height: 48px;
+        background-color: var(--header-bg-color);
+        border-bottom: 1px solid var(--border-color);
+
+        .notepad_list__head__search {
+            flex-grow: 1;
+            background-color: var(--input-bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            height: 36px;
+            margin-right: 8px;
+            padding-left: 16px;
+            &:focus {
+                outline: none;
+                background-color: var(--input-bg-hover-color);
+            }
+            &:hover {
+                background-color: var(--input-bg-hover-color);
+            }
+        }
+        .notepad_list__head__add {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            font-size: 18px;
+            background: none;
+            border: none;
+            outline: none;
+            color: var(--main-text-color);
+            &:focus {
+                outline: none;
+            }
+            &:hover {
+                background-color: var(--hover-bg);
+                cursor: pointer;
+            }
+        }
+    }
+    .notepad_list__list {
+        height: calc(100% - 48px);
+        flex-grow: 1;
+        background-color: var(--note-element-bg-color);
+        overflow: auto;
+        .notepad_list__left {
+            flex-grow: 1;
+            overflow: hidden;
+        }
+
+        .notepad_list__list__element {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 8px 12px;
+            background-color: var(--note-element-bg-color);
+            border-bottom: 1px solid var(--border-color);
+            .notepad_list__element_title {
+                display: block;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                width: 100%;
+                color: var(--main-text-color);
+                font-weight: bolder;
+            }
+
+            .notepad_list__element_date {
+                display: block;
+                font-size: smaller;
+                color: var(--main-text-color);
+            }
+            &.active {
+                background-color: var(--main-color);
+                .notepad_list__element_title, .notepad_list__options_btn {
+                    color: var(--light-text-color);
+                }
+                .notepad_list__element_date {
+                    color: var(--light-text-second-color);
+                }
+                &:hover {
+                    background-color: var(--main-color);
+                }
+            }
+            &:hover {
+                background-color: var(--hover-bg);
+                cursor: pointer;
+            }
+
+            .btnWithIcon {
+                display: inline-block;
+                background: none;
+                border: none;
+                outline: none;
+                opacity: 0.5;
+                font-size: larger;
+                &:hover {
+                    opacity: 1;
+                    cursor: pointer;
+                }
+            }
+
+            // .notepad_list__options_btn {
+            //     border: none;
+            //     background: none;
+            //     padding: 0px;
+            //     color: var(--main-text-color);
+
+            //     display: flex;
+            //     justify-content: center;
+            //     align-items: center;
+            //     width: 36px;
+            //     height: 36px;
+            //     border-radius: 50%;
+
+            //     &:hover {
+            //         background-color: var(--main-color-tp);
+            //     }
+            //     &:focus {
+            //         background-color: var(--main-color-tp);
+            //     }
+
+            //     .ui.icon {
+            //         display: flex;
+            //         align-items: center;
+            //         justify-content: center;
+            //         width: 100%;
+            //         height: 100%;
+            //     }
+
+            //     i.icon {
+            //         width: 1.18em;
+            //         height: 1.18em;
+            //         margin: 0;
+            //         transform: translateY(-2px);
+            //     }
+            // }
+        }
+    }
+}
+
+
+.notepad__editor {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+
+    .notepad__editor__head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 48px;
+        background-color: var(--header-bg-color);
+        border-bottom: 1px solid var(--border-color);
+        padding: 0 8px;
+
+        .notepad__editor__head_left {
+            .notepad__editor__head__title_input {
+                display: block;
+                min-width: 200px;
+                max-width: 400px;
+                background: none;
+                border: 1px solid transparent;
+                outline: none;
+
+
+                font-size: larger;
+                height: 36px;
+                padding-left: 16px;
+                border-radius: 8px;
+
+                &:hover {
+                    cursor: pointer;
+                    background-color: var(--input-bg-color);
+                }
+
+                &:active, &:focus {
+                    outline: none;
+                    cursor: auto;
+
+                    background-color: var(--input-bg-hover-color);
+                    border: 1px solid var(--border-color);
+                }
+            }
+        }
+        .notepad__editor__head_right {
+            .notepad__editor__head__save_bttn {
+                display: inline-block;
+            }
+            .notepad__editor__head__cancel_bttn {
+                display: inline-block;
+            }
+        }
+
+    }
+
+    .notepad__editor__textarea {
+        display: block;
+        width: 100%;
+        flex-grow: 1;
+        resize: none;
+        border: none;
+        font-size: larger;
+        padding: 16px;
+        background-color: var(--input-bg-color);
+
+        outline: #fff;
+        &:active, &:focus {
+            border: none;
+            outline: none;
+        }
+    }
+
+}
+
+
+.notepad_handler {
+    position: relative;
+
+    &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        left: 2px;
+        width: 2px;
+        height: 100%;
+        opacity: 0.7;
+    }
+    &:hover::after {
+        background-color: var(--main-color);
+        cursor: ew-resize;
+    }
+    &:active::after {
+        background-color: var(--main-color);
+    }
+}

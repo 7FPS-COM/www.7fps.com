@@ -1,0 +1,58 @@
+.EventsList__wrapper {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+
+    &_inner {
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        max-width: 1080px;
+    }
+
+}
+
+.EventBlockElement {
+    display: block;
+    position: relative;
+    margin-bottom: 16px;
+    transition: all 0.1s ease-in-out;
+
+    &:hover {
+        box-shadow: rgba(149, 157, 165, 0.5) 0px 8px 24px;
+        transform: scale(1.03);
+        z-index: 10;
+    }
+
+    .event_poster_image {
+        display: block;
+        width: 325px;
+        height: 468px;
+    }
+
+    .event_title {
+        display: block;
+        position: absolute;
+        bottom: 10%;
+        font-size: 26px;
+        color: #fff;
+        text-align: center;
+        width: 100%;
+        font-family: Burbank;
+        line-height: 44px;
+
+        .event_name_line1 {
+            display: block;
+            font-size: 1.75em;
+        }
+        .event_name_line2 {
+            display: block;
+            font-size: 1.75em;
+        }
+        .event_schedule {
+            display: block;
+        }
+    }
+}

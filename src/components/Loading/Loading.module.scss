@@ -1,0 +1,24 @@
+.Wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.Fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--modal-bg-color);
+}
+
+.FlexGrow {
+    flex-grow: 1;
+}
+
+.WidthHeight100 {
+    width: 100%;
+    height: 100%;
+}

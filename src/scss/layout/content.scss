@@ -1,0 +1,44 @@
+.content {
+    display: block;
+    width: 100%;
+    flex-grow: 1;
+    .content__inner {
+        height: calc(100vh - 64px);
+        width: 100%;
+        padding: 16px 48px;
+        .content__inner__modal {
+            display: flex;
+            overflow: hidden;
+            width: 100%;
+            min-width: 800px;
+            height: 100%;
+            background-color: var(--modal-bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+
+            box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        }
+    }
+}
+
+input {
+    caret-color: var(--main-text-color);
+    color: var(--main-text-color)
+}
+
+.button {
+    color: var(--link-color);
+    border: 1px solid var(--link-border-color);
+    border-radius: 8px;
+    background: none;
+    padding: 6px 16px;
+
+    &:hover {
+        background-color: var(--main-color-tp);
+        cursor: pointer;
+    }
+}
+
+::selection, input::selection, textarea::selection {
+    background: var(--main-color-tp);
+}
