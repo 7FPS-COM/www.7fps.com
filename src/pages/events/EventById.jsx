@@ -1,19 +1,12 @@
-import React, {useEffect, useState} from 'react';
-import { useParams } from 'react-router-dom';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
+import '../../scss/events/EventById.scss';
 
-const EventById = () => {
-
-    const [eventId, setEventId] = useState(null)
-
-    let params = useParams();
-
-    useEffect(() => {
-        setEventId(params.event_id === undefined ? null : params.event_id)
-    }, [params.event_id, setEventId])
+const EventById = (props) => {
+    const {eventId} = props
 
     return (
-        <div>
+        <div className={[props.className, "eventById__wrapper"].join(' ')}>
             <NavLink to="/events">Back</NavLink>
             {eventId}
         </div>
