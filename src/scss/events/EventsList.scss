@@ -12,6 +12,35 @@
         max-width: 1080px;
     }
 
+    .EventsList__options {
+        display: flex;
+        height: 64px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    select {
+        /* Reset Select */
+        outline: 0;
+        border: 0;
+        box-shadow: none;
+        /* Personalize */
+        padding: 6px 16px;
+        color: #fff;
+        background: none;
+        color: var(--link-color);
+        border: 1px solid;
+        border-radius: 8px;
+        border-color: var(--link-border-color);
+        background-image: none;
+        cursor: pointer;
+
+
+        &:active, &:focus {
+            background: none;
+        }
+    }
+
 }
 
 .EventBlockElement {

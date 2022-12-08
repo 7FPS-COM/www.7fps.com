@@ -5,6 +5,11 @@ header {
     z-index: 30;
 
     height: 64px;
+
+    @media screen and (max-width: 550px) {
+        height: auto;
+    }
+
     .header__links {
         display: flex;
         flex-direction: row;
@@ -13,7 +18,7 @@ header {
 
         border: 1px solid var(--border-color);
         border-radius: 8px;
-        position: fixed;
+        position: absolute;
         width: fit-content;
         top: 16px;
         left: 50%;
@@ -21,7 +26,22 @@ header {
         background-color: var(--header-bg-color-tp);
         font-size: 18px;
         height: 48px;
-        backdrop-filter: blur(4px);
+
+        @media screen and (max-width: 550px) {
+            display: block;
+            position: relative;
+            transform: none;
+            width: 100%;
+            height: auto;
+            left: auto;
+            top: auto;
+            height: auto;
+
+            * {
+                display: block;
+            }
+        }
+
         * {
             display: inline-block;
             margin: 0 4px;

@@ -24,6 +24,7 @@ import api_urls from './constants/api_urls';
 import LootPage from './pages/loot/LootPage';
 import EventsPage from './pages/events/EventsPage';
 import Loading from './components/Loading/Loading';
+import setTitle from './utils/setTitle';
 
 export const Context = createContext(null)
 
@@ -61,6 +62,9 @@ function Layout() {
     promise.catch(error => setIsServerConnectionError(true));
   }, [])
 
+  useEffect(() => {
+    setTitle(null)
+  },[])
 
   return (
     <Context.Provider value={{isServerConnectionError, setIsServerConnectionError, isLoading, setIsLoading, user, setUser}}>
@@ -82,11 +86,9 @@ function Layout() {
       <div className='content'>
         <Routes>
             <Route path="*" element={<div>Home Page TODO</div>}/>  
-
             <Route path="/events/*" element={<EventsPage/>}/>
             <Route path="/loot" element={<LootPage/>}/>
             <Route path="/notes/*" element={<NotesPage/>}/>
-
         </Routes>
       </div>
       </>

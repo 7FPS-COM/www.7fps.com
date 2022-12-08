@@ -1,64 +1,44 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import getEvents from '../../api/fortnite/getEvents';
-import EventBlockElement from './components/EventBlockElement';
-import Loading from '../../components/Loading/Loading';
-import '../../scss/events/EventsList.scss';
-import EventById from './EventById';
-import { useParams } from 'react-router-dom';
+import EventPoster from './components/EventPoster';
+import RegionChoose from './components/RegionChoose';
+import classes from './scss/EventsList.module.scss';
 
-const EventsList = () => {
-    const [isServerConnectionError, setIsServerConnectionError] = useState(false)
-    const [isLoading, setIsLoading] = useState(true)
-    const [response, setResponse] = useState(null)
-    const [events, setEvents] = useState(null)
+const EventsList = ({eventsResponse}) => {
 
-
-    const [eventId, setEventId] = useState(null)
-
-    let params = useParams();
+    const [eventsFormatted, setEventsFormatted] = useState(null)
 
     useEffect(() => {
-        setEventId(params.event_id === undefined ? null : params.event_id)
-    }, [params.event_id, setEventId])
-
-    useEffect(() => {
-        setIsLoading(true)
-
-        const promise = getEvents('EU', 'en', 21)
-        promise.then(result => {
-          try {
-            setResponse(JSON.parse(result))
-            setIsLoading(false)
-          } catch (error) {
-            setIsServerConnectionError(true)
-          }
-        });
-        promise.catch(error => {
-          setIsServerConnectionError(true)
-        });
-    },[])
-
-    useEffect(() => {
-        if(response === null) return
-        if(response.result === false) setIsServerConnectionError(true)
-        if(response.events === undefined) return
-        setEvents(response.events)
-    }, [response])
+        if(eventsResponse === null) return setEventsFormatted(null)
+        
+        let perChunk = 3;
+        const result = eventsResponse.events.reduce((resultArray, item, index) => { 
+            const chunkIndex = Math.floor(index/perChunk)
+          
+            if(!resultArray[chunkIndex]) {
+              resultArray[chunkIndex] = [] // start a new chunk
+            }
+          
+            resultArray[chunkIndex].push(item)
+          
+            return resultArray
+          }, [])
+        
+        setEventsFormatted(result)
+    }, [eventsResponse])
 
     return (
-      <>
-        <div className='EventsList__wrapper'>
-            {isLoading ?         <Loading isServerConnectionError={isServerConnectionError}/> : 
-            events === null ?    <Loading isServerConnectionError={isServerConnectionError}/> : 
-            <div className='EventsList__wrapper_inner'>
-              {events.map(event => (<EventBlockElement event={event} key={event.id}/>))}
-            </div>
+        <div className={classes.Wrapper}>
+            <RegionChoose region={eventsResponse === null ? null : eventsResponse.region}/>
+
+            {eventsFormatted === null ? <h3 style={{textAlign: "center", marginTop: "16px"}}>Choose region to start working</h3> : 
+                eventsFormatted.map((evnt, index) => 
+                    <div className={classes.Row} key={`row${index}`}>
+                        {evnt.map(evnt =>(<EventPoster key={evnt.id} eventData={evnt} region={evnt.region}/>))}
+                    </div>)
             }
         </div>
-        <EventById className={eventId === null ? "event_hidden" : "event_visible"} eventId={eventId}/>
-      </>
     );
 };
 

@@ -4,7 +4,7 @@ import deleteNote from '../../../api/client/notes/deleteNote';
 
 const LeftDeleteButton = ({note, setters, getters}) => {
     const {setNotes, setUser, setNotesSettings, setNotesLoading, setIsServerConnectionError, setNoteId} = setters
-    const {noteId} = getters
+    const {noteId, notesLoading} = getters
 
     const [open, setOpen] = useState(false)
 
@@ -33,31 +33,32 @@ const LeftDeleteButton = ({note, setters, getters}) => {
     }
 
     function deleteNoteFunc() {
-        const promise = deleteNote(note.note_id)
-        promise.then(result => {
-          try {
-            const {notes, notes_settings, user} = JSON.parse(result)
-            if(user !== undefined) setUser(user)
-            if(notes !== undefined) setNotes(notes)
-            if(notes_settings !== undefined) setNotesSettings(notes_settings)
+      setNotesLoading(true)
+      const promise = deleteNote(note.note_id)
+      promise.then(result => {
+        try {
+          const {notes, notes_settings, user} = JSON.parse(result)
+          if(user !== undefined) setUser(user)
+          if(notes !== undefined) setNotes(notes)
+          if(notes_settings !== undefined) setNotesSettings(notes_settings)
 
-            if(note.note_id === noteId) setNoteId(null)
-      
-            setNotesLoading(false)
-          } catch (error) {
-            setNotesLoading(true)
-            setIsServerConnectionError(true)
-          }
-        });
-        promise.catch(error => {
+          if(note.note_id === noteId) setNoteId(null)
+    
+          setNotesLoading(false)
+        } catch (error) {
           setNotesLoading(true)
           setIsServerConnectionError(true)
-        });
+        }
+      });
+      promise.catch(error => {
+        setNotesLoading(true)
+        setIsServerConnectionError(true)
+      });
     }
 
     return (
         <>
-            <button onClick={(e) => openHandler(e)} className='btnWithIcon'>
+            <button onClick={(e) => openHandler(e)} className='btnWithIcon' disabled={notesLoading}>
               <Icon name='trash alternate' color="red" />
             </button>
             <Confirm

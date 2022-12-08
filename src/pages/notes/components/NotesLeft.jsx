@@ -23,7 +23,7 @@ const NotesLeft = ({setters, getters}) => {
         >
             <div className='notepad_list__head'>
                 <input disabled={notesLoading} type={'text'} placeholder={'Serach...'} className='notepad_list__head__search'/>
-                <LeftAddButton setters={setters} disabled={notesLoading}/>
+                <LeftAddButton setters={setters} getters={getters}/>
             </div>
             <div className='notepad_list__list'>
                 {notesLoading ? <Loading  isServerConnectionError={isServerConnectionError}/> : notes.map(note => (

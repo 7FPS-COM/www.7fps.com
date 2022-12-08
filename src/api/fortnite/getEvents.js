@@ -1,7 +1,12 @@
 import api_urls from "../../constants/api_urls";
 const { fortnite_api } = api_urls
 
-const getEvents = (region = 'EU', lang = 'en', last = 20) => {
+const getEvents = ({region, lang, last, upcomingEvents}) => {
+    region = region === undefined ? "EU" : region
+    lang = lang === undefined ? "en" : lang
+    last = last === undefined ? 21 : last
+    upcomingEvents = upcomingEvents === undefined ? false : upcomingEvents
+
     var requestOptions = {
       method: 'GET',
       redirect: 'follow',

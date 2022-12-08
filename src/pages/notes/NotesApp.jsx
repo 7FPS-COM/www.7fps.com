@@ -11,7 +11,6 @@ const NotesApp = ({setUser}) => {
     const [notesSettings, setNotesSettings] = useState(null)
     const [notesLoading, setNotesLoading] = useState(true)
     const [noteId, setNoteId] = useState(null)
-
     const [isServerConnectionError, setIsServerConnectionError] = useState(false)
 
     const getters = {notes, notesSettings, notesLoading, isServerConnectionError, noteId}
