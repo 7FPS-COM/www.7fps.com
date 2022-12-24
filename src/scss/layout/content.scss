@@ -31,9 +31,25 @@
     }
 }
 
-input {
+input, textarea {
     caret-color: var(--main-text-color);
-    color: var(--main-text-color)
+    color: var(--main-text-color);
+    background-color: var(--input-bg-color);
+}
+
+input[type=text], input[type=number] {
+    background-color: var(--input-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    height: 36px;
+
+    &:focus {
+        outline: none;
+        background-color: var(--input-bg-hover-color);
+    }
+    &:hover {
+        background-color: var(--input-bg-hover-color);
+    }
 }
 
 .button {
@@ -50,5 +66,6 @@ input {
 }
 
 ::selection, input::selection, textarea::selection {
-    background: var(--main-color-tp);
+    background: rgb(75, 75, 197);
+    color: #fff;
 }

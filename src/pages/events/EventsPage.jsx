@@ -1,14 +1,9 @@
 import React from 'react';
-import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import ModalWindow from '../../components/ModalWindow/ModalWindow';
-import setTitle from '../../utils/setTitle';
 import EventsList from './EventsApp';
 
 const EventsPage = () => {
-    useEffect(() => {
-        setTitle("Events")
-    },[])
 
     return (
         <ModalWindow>

@@ -11,6 +11,7 @@ const EventsList = ({eventsResponse}) => {
 
     useEffect(() => {
         if(eventsResponse === null) return setEventsFormatted(null)
+        if(eventsResponse?.result === false) return setEventsFormatted(null)
         
         let perChunk = 3;
         const result = eventsResponse.events.reduce((resultArray, item, index) => { 

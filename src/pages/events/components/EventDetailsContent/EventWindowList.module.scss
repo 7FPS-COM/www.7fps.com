@@ -1,0 +1,69 @@
+.Wrapper {
+    display: block;
+    min-width: 240px;
+    padding: 8px 4px;
+    max-height: calc(80vh - 262px);
+    min-height: 300px;
+    overflow: auto;
+    width: fit-content;
+    .Link {
+        &:first-child {
+            border-radius: 8px 8px 0 0;
+        }
+        &:last-child {
+            border-radius: 0 0 8px 8px;
+            border: none;
+        }
+        &:only-child {
+            border-radius: 8px;
+            border: none;
+        }
+        &.Past {
+            background-color: var(--inactive);
+            opacity: 0.5;
+        }
+        &.Live {
+            &::after {
+                display: block;
+                content: 'LIVE';
+                position: absolute;
+                right: 16px;
+                top: 50%;
+                transform: translateY(-50%);
+                background-color: rgba(255, 0, 0, 0.7);
+                color: #fff;
+                padding: 4px 8px;
+                border-radius: 8px;
+                font-weight: bolder;
+            }
+        }
+        border-bottom: 1px solid var(--main-color-tp);
+    
+        display: block;
+        position: relative;
+        width: 100%;
+        line-height: 1.2rem;
+        color: var(--main-text-color);
+        padding: 8px;
+        transition: all 0.1s ease-in-out;
+        background-color: var(--main-color-tp);
+        &:hover {
+            color: var(--main-text-color);
+        }
+    }
+}
+
+.WindowTitle {
+    display: block;
+}
+
+.WindowDate {
+    display: block;
+    font-weight: bolder;
+    font-size: larger;
+}
+
+.WindowTime {
+    display: block;
+    font-size: smaller;
+}

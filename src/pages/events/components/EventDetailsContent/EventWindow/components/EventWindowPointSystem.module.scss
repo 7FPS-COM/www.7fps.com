@@ -1,0 +1,27 @@
+.Wrapper {
+    display: block;
+    max-height: calc(80vh - 262px);
+    min-height: 300px;
+    width: fit-content;
+    padding: 8px 16px;
+    flex-shrink: 0;
+    position: relative;
+    overflow: auto;
+
+    .Title {
+        padding: 8px;
+    }
+
+    .ListElement {
+        display: flex;
+        justify-content: space-between;
+        padding: 2px 8px;
+        margin: 2px 0;
+        background-color: var(--main-color-tp);
+        color: var(--main-text-color);
+        font-size: larger;
+        .Left {
+            margin-right: 24px;
+        }
+    }
+}

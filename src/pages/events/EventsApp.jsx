@@ -5,8 +5,8 @@ import getEventsUtil from './utils/getEvents';
 import Loading from '../../components/Loading/Loading';
 import EventsList from './EventsList';
 import EventDetails from './EventDetails';
-import EventWindow from './EventWindow';
 import classes from './scss/EventsApp.module.scss';
+import setTitle from '../../utils/setTitle';
 
 const EventsApp = () => {
   const params = useParams()
@@ -19,7 +19,8 @@ const EventsApp = () => {
   const [isServerConnectionError, setIsServerConnectionError] = useState(false)
 
   useEffect(() => {
-    setRegion(params.region === undefined ? null : ["EU", "NAE", "NAW", "OCE", "ME", "ASIA", "BR"].includes(params.region.toUpperCase()) ? params.region.toUpperCase() : "EU")
+    const tempRegion = params.region === undefined ? null : ["EU", "NAE", "NAW", "OCE", "ME", "ASIA", "BR"].includes(params.region.toUpperCase()) ? params.region.toUpperCase() : "EU";
+    setRegion(tempRegion)
     setEventId(params.event_id === undefined ? null : params.event_id)
     setEventWindowId(params.window_id === undefined ? null : params.window_id)
   }, [params.region, setRegion, params.event_id, setEventId, params.window_id, setEventWindowId])
@@ -38,6 +39,11 @@ const EventsApp = () => {
   }, [region])
 
   useEffect(() => {
+    if(eventId !== null) return
+    setTitle(region === null ? "Events" : `Events (${region})`)
+  }, [region, eventId])
+
+  useEffect(() => {
     // Solution for the problem:
     // - if you choose region and then quickly click Events on top of the screen
     // while event is loading we are gonna have loaded event on a page that supposed
@@ -48,8 +54,7 @@ const EventsApp = () => {
   return (
     <div className={classes.Wrapper}>
       {isLoading ? <Loading isServerConnectionError={isServerConnectionError}/> : <EventsList eventsResponse={eventsResponse}/>}
-      <EventDetails eventsResponse={eventsResponse} eventId={eventId}/>
-      <EventWindow eventWindowId={eventWindowId}/>
+      <EventDetails eventsResponse={eventsResponse} eventId={eventId} eventWindowId={eventWindowId}/>
     </div>
   );
 };

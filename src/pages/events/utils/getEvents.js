@@ -4,12 +4,13 @@ const getEventsUtil = ({setEventsResponse, setIsLoading, setIsServerConnectionEr
   if(region === null) return
   setIsLoading(true)
 
-  const promise = getEvents({region})
+  const promise = getEvents({region, last: 30})
   promise.then(result => {
     try {
       result = JSON.parse(result)
-      if(result.result === false) setIsServerConnectionError(true)
-      if(result.events === undefined) setIsServerConnectionError(true)
+      if(result.error !== undefined) alert(result.error)
+      if(result.result === false) return setIsServerConnectionError(true)
+      if(result.events === undefined) return setIsServerConnectionError(true)
 
       setEventsResponse(result)
       setIsLoading(false)
