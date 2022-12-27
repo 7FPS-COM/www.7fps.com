@@ -25,6 +25,7 @@ import LootPage from './pages/loot/LootPage';
 import EventsPage from './pages/events/EventsPage';
 import Loading from './components/Loading/Loading';
 import setTitle from './utils/setTitle';
+import AboutPage from './pages/about/AboutPage';
 
 export const Context = createContext(null)
 
@@ -75,6 +76,14 @@ function Layout() {
       : <>
         <header style={{opacity: user === null ? 0 : 1}}>
         <ul className='header__links'>
+          <li><NavLink to="/" className='header__links_logo'>
+            
+          <img alt="logo-dark" className='header__links_logo_img-dark' src="/LOGO-DARK-THEME.png"/>
+          
+          <img alt="logo-light" className='header__links_logo_img-light' src="/LOGO-LIGHT-THEME.png"/>
+          
+          </NavLink></li>
+
           <li><NavLink to="/events">Events</NavLink></li>
           <li><NavLink to="/loot">Loot List</NavLink></li>
           <li><NavLink to="/notes">Notes</NavLink></li>
@@ -85,7 +94,8 @@ function Layout() {
 
       <div className='content'>
         <Routes>
-            <Route path="*" element={<div>Home Page TODO</div>}/>  
+            {/* <Route path="*" element={<div>Error</div>}/>   */}
+            <Route path="/" element={<AboutPage/>}/>  
             <Route path="/events/*" element={<EventsPage/>}/>
             <Route path="/loot" element={<LootPage/>}/>
             <Route path="/notes/*" element={<NotesPage/>}/>

@@ -53,6 +53,7 @@ header {
         a {   
             border-radius: 8px;
             padding: 6px 16px;
+            font-weight: bolder;
             &:hover {
                 background-color: var(--main-color-tp);
             }
@@ -60,10 +61,43 @@ header {
                 background-color: var(--main-color-tp);
             }
         }
+
+        .header__links_logo {
+            padding: 0;
+            height: 64px;
+            width: max-content;
+            img {
+                display: none;
+                height: 100%;
+            }
+            &.active {
+                background: none;
+            }
+            &:hover {
+                background-color: var(--main-color-tp);
+                backdrop-filter: blur(4px);
+            }
+            &:active {
+                transform: scale(0.9);
+            }
+        }
+
         .auth {
             padding: 6px 16px;
             color: var(--link-color);
             border: 1px solid var(--link-border-color);
+            font-weight: 400;
         }
+    }
+}
+
+.dark {
+    .header__links_logo_img-dark {
+        display: block !important;
+    }
+}
+.light {
+    .header__links_logo_img-light {
+        display: block !important;
     }
 }
