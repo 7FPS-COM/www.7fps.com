@@ -12,7 +12,7 @@ import {
   Routes,
   Route
 } from "react-router-dom";
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { useEffect, useState, createContext } from 'react';
 
 import useLocalStorage from './hooks/useLocalStorage';
@@ -67,6 +67,8 @@ function Layout() {
     setTitle(null)
   },[])
 
+  const location = useLocation();  
+
   return (
     <Context.Provider value={{isServerConnectionError, setIsServerConnectionError, isLoading, setIsLoading, user, setUser}}>
       
@@ -76,13 +78,15 @@ function Layout() {
       : <>
         <header style={{opacity: user === null ? 0 : 1}}>
         <ul className='header__links'>
-          <li><NavLink to="/" className='header__links_logo'>
+          {/* <li><NavLink to="/" className='header__links_logo'>
             
           <img alt="logo-dark" className='header__links_logo_img-dark' src="/LOGO-DARK-THEME.png"/>
           
           <img alt="logo-light" className='header__links_logo_img-light' src="/LOGO-LIGHT-THEME.png"/>
           
-          </NavLink></li>
+          </NavLink></li> */}
+
+          <li><NavLink to="/" className={location.pathname === "/" ? "about-active" : "about-inactive"}>About</NavLink></li>
 
           <li><NavLink to="/events">Events</NavLink></li>
           <li><NavLink to="/loot">Loot List</NavLink></li>
