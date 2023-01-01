@@ -6,7 +6,7 @@ import LootListFilters from './components/LootListFilters';
 import classes from './scss/LootListApp.module.scss';
 
 const LootListApp = ({lootListResponse}) => {
-    const [lootListData, setLootListData] = useState(lootListResponse)
+    const [lootListData, setLootListData] = useState(null)
 
     const [filterName, setFilterName] = useState('')
     const [filterEnabled, setFilterEnabled] = useState(true)
@@ -46,7 +46,7 @@ const LootListApp = ({lootListResponse}) => {
     return (
         <div className={classes.Wrapper}>
             <LootListFilters modifiers={modifiers} modifierSetters={modifierSetters}/>
-            <LootList lootListData={lootListData}/>
+            {lootListData === null ? <>Loading...</> : <LootList lootListData={lootListData}/>}
         </div> 
     );
 };
