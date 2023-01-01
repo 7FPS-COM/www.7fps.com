@@ -6,7 +6,6 @@ import LootListFilters from './components/LootListFilters';
 import classes from './scss/LootListApp.module.scss';
 
 const LootListApp = ({lootListResponse}) => {
-    console.log(JSON.stringify(lootListResponse))
     const [lootListData, setLootListData] = useState(lootListResponse)
 
     const [filterName, setFilterName] = useState('')
@@ -33,8 +32,11 @@ const LootListApp = ({lootListResponse}) => {
             data.weapons = data.weapons.filter(item => item.name.includes(filterName))
         }
 
+        console.log(modifiers)
+
         setLootListData(data)
-    }, [lootListResponse, 
+    }, [
+        lootListResponse, 
         filterEnabled, 
         sortBy,
         filterName
