@@ -9,11 +9,14 @@ const EventWindowPointsCalculator = ({placement, eliminations}) => {
     const [calculatedText, setCalculatedText] = useState([])
 
     useEffect(() => {
-        if(currentPoints < 0 || goalPoints <= 0) return setCalculatedText("Current amount of points must be equal or greater than 0\nGoal amount of points must be greater than 0")
-        if(currentPoints > goalPoints) return setCalculatedText("Goal amount of points can't be less than current")
+        let currentPointsB = currentPoints === '' ? -1 : currentPoints
+        let goalPointsB = goalPoints === '' ? -1 : goalPoints
+
+        if(currentPointsB < 0 || goalPointsB <= 0) return setCalculatedText("Current amount of points must be equal or greater than 0\nGoal amount of points must be greater than 0")
+        if(currentPointsB > goalPointsB) return setCalculatedText("Goal amount of points can't be less than current")
 
         let result = []
-        let pointsRequired = goalPoints - currentPoints
+        let pointsRequired = goalPointsB - currentPointsB
 
         for(let i = 0; i < placement.length; i++) {
             const element = placement[i]
@@ -30,7 +33,7 @@ const EventWindowPointsCalculator = ({placement, eliminations}) => {
 
     function pointsSetter(e) {
         let value = parseInt(e.target.value)
-        if(isNaN(value)) value = 0
+        if(isNaN(value)) value = ''
         if(e.target.id === "currentPoints") {
             setCurrentPoints(value)
         }
@@ -48,10 +51,10 @@ const EventWindowPointsCalculator = ({placement, eliminations}) => {
 
             <div className={classes.Settings}>
                 <label htmlFor="currentPoints">Current amount of points:</label>
-                <input type="number" id="currentPoints" name="currentPoints" value={currentPoints} onChange={(e) => pointsSetter(e)}/>
+                <input type="number" pattern="(^[0-9]+$|^$)" id="currentPoints" name="currentPoints" value={currentPoints} onChange={(e) => pointsSetter(e)}/>
         
                 <label htmlFor="goalPoints">Goal amount of points:</label>
-                <input type="number" id="goalPoints" name="goalPoints" value={goalPoints} onChange={(e) => pointsSetter(e)}/>
+                <input type="number" pattern="(^[0-9]+$|^$)" id="goalPoints" name="goalPoints" value={goalPoints} onChange={(e) => pointsSetter(e)}/>
             </div>
 
             <div className={classes.Result}>
