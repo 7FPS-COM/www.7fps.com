@@ -1,0 +1,15 @@
+.Wrapper {
+    display: block;
+    flex-shrink: 0;
+    width: 420px;
+    padding: 16px;
+    background-color: var(--main-color-tp); 
+
+    transition: background-color 0.3s ease-in-out;
+
+    .InnerWrapper {
+        display: block;
+        position: sticky;
+        top: 8px;
+    }
+}

@@ -2,4 +2,27 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    flex-shrink: 1;
+    flex-grow: 1;
+    width: 100%;
+
+    .Item {
+        display: block;
+        width: 115px;
+        height: 115px;
+        background: none;
+        border: none;
+        padding: 0;
+        margin: 0;
+
+        &:hover {
+            cursor: pointer;
+            opacity: 0.87;
+        }
+
+        img {
+            width: 115px;
+            height: 115px;
+        }
+    }
 }
