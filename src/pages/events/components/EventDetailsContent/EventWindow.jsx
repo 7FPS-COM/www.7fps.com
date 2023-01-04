@@ -8,7 +8,9 @@ const EventWindow = ({getters}) => {
 
     if(eventWindowId === null) return (
         <div className={[classes.Wrapper, classes.Show].join(" ")}>
-            Choose event window
+            <div className={classes.ChooseSessionWrapper}>
+                <span className={classes.ChooseSession}>Choose session</span>
+            </div>
         </div>
     )
     if(windowLoading === true) return (

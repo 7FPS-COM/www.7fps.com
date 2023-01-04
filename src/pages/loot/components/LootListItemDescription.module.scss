@@ -10,6 +10,10 @@
     .InnerWrapper {
         display: block;
         position: sticky;
-        top: 8px;
+        top: 16px;
+    }
+
+    code {
+        word-wrap: break-word;
     }
 }

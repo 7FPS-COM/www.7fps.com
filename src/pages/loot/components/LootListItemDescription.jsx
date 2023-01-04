@@ -25,6 +25,7 @@ const LootListItemDescription = ({itemDescription}) => {
                 <h2>{itemDescription.name}</h2>
                 <h3>{itemDescription.rarity}</h3>
                 <p>{itemDescription.description}</p>
+                <code>{JSON.stringify(itemDescription)}</code>
             </div>
         </div>
     )};

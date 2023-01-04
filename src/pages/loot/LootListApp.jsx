@@ -13,7 +13,7 @@ const LootListApp = ({lootListResponse}) => {
 
     const [filterName, setFilterName] = useState('')
     const [filterEnabled, setFilterEnabled] = useState(true)
-    const [sortBy, setSortBy] = useState(false)
+    const [sortBy, setSortBy] = useState('rarity')
     const [reversed, setReversed] = useState(false)
     // sort by:
     // - no sort
@@ -27,6 +27,7 @@ const LootListApp = ({lootListResponse}) => {
         let data = JSON.parse(JSON.stringify(lootListResponse))
 
         if(filterEnabled === true) {
+            console.log(JSON.stringify(data.weapons))
             data.weapons = data.weapons.filter(item => item.enabled)
         }
         if(filterEnabled === false) {
@@ -37,6 +38,7 @@ const LootListApp = ({lootListResponse}) => {
         }
 
         if(sortBy === 'name') {
+            data = sortByRarity(data)
             data.weapons = data.weapons.sort(function(a, b){
                 if(a.name < b.name) { return -1; }
                 if(a.name > b.name) { return 1; }
