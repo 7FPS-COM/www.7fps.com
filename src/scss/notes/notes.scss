@@ -149,6 +149,17 @@
     }
 }
 
+.notepad__opennote_wrapper {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    // box-shadow: inset 0 0 64px var(--main-color-tp);
+
+    .notepad__opennote_text {
+        font-size: 20px;
+    }
+}
 
 .notepad__editor {
     display: flex;

@@ -87,7 +87,7 @@ const NotesRight = ({setters, getters}) => {
     return (
       <>
       {
-        noteId === null ? <div>open or create a note</div> : 
+        noteId === null ? <div className='notepad__opennote_wrapper'><span className='notepad__opennote_text'>Open or create a note</span></div> : 
 
         noteLoading ? <Loading  isServerConnectionError={isServerConnectionError} flex/> :
         
