@@ -20,7 +20,7 @@ const NotesPage = (props) => {
                         <>Loading</>
                         :
                             user?.auth === true ?
-                        <NotesApp setUser={setUser}/> : 'You need to be authorized to use "Notes"'
+                        <NotesApp setUser={setUser}/> : <div className='notepad__not_authorized'><span className='notepad__not_authorized_text'>You have to be authorized to use Notes</span></div>
                         
                         }
                 </ModalWindow>

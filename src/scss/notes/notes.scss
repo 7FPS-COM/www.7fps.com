@@ -149,6 +149,18 @@
     }
 }
 
+.notepad__not_authorized {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-size: 20px;
+    .notepad__not_authorized_text {
+        display: block;
+    }
+}
+
 .notepad__opennote_wrapper {
     display: flex;
     flex-grow: 1;
