@@ -6,6 +6,7 @@ import { Context } from '../../Layout';
 import NotesApp from './NotesApp';
 import ModalWindow from '../../components/ModalWindow/ModalWindow';
 import setTitle from '../../utils/setTitle';
+import Beta from '../../components/Beta/Beta';
 
 const NotesPage = (props) => {
     useEffect(() => {
@@ -16,6 +17,11 @@ const NotesPage = (props) => {
         <Context.Consumer>
             { ({isLoading, isServerConnectionError, user, setUser}) =>  
                 <ModalWindow>
+                    <div className='notes__wrapper'>
+                        <Beta>
+                            BETA
+                        </Beta>
+                        <div className='notes__inner_wrapper'>
                         {isLoading ?
                         <>Loading</>
                         :
@@ -23,6 +29,8 @@ const NotesPage = (props) => {
                         <NotesApp setUser={setUser}/> : <div className='notepad__not_authorized'><span className='notepad__not_authorized_text'>You have to be authorized to use Notes</span></div>
                         
                         }
+                        </div>
+                    </div>
                 </ModalWindow>
             }
         </Context.Consumer>

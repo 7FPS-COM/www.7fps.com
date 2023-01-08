@@ -1,0 +1,17 @@
+.HazardBackground {
+    height: 30px;
+    line-height: 18px;
+    text-align: center;
+    flex-shrink: 1;
+    font-size: 20px;
+    color: #fff;
+    font-weight: bold;
+    padding: 5px;
+    background-image: repeating-linear-gradient(
+      -55deg,
+      #000,
+      #000 20px,
+      #ffb101 20px,
+      #ffb101 40px
+    );
+  }

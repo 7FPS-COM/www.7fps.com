@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import getLootList from '../../api/fortnite/getLootList';
+import Beta from '../../components/Beta/Beta';
 import Loading from '../../components/Loading/Loading';
 import ModalWindow from '../../components/ModalWindow/ModalWindow';
 import setTitle from '../../utils/setTitle';
@@ -35,6 +36,7 @@ const LootPage = () => {
     return (
         <ModalWindow>
             <div className={classes.Wrapper}>
+            <Beta>BETA</Beta>
             {
                 isLoading || lootListResponse === null ? <Loading isServerConnectionError={isServerConnectionError}/> :
                 <LootListApp lootListResponse={lootListResponse}/>
